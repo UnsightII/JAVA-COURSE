@@ -11,32 +11,27 @@ public class BankWithdraw{
     System.out.println("***************");
 
     do{
-      System.out.println("Show Balance");
-      System.out.println("Deposit");
-      System.out.println("Withdraw");
-      System.out.println("Exit"); 
+      System.out.println("1.Show Balance");
+      System.out.println("2.Deposit");
+      System.out.println("3.Withdraw");
+      System.out.println("4.Exit"); 
       System.out.println("***************");
       System.out.print("Enter your choice (1-4): ");
       choose = input.nextInt();
 
       switch(choose){
         case 1:
-          System.out.println("***************");
-          System.out.println("Your balance: "+ totalBalance);
-          System.out.println("***************");
+          showBalance(totalBalance);
           break;
 
         case 2:
           totalBalance = deposit(totalBalance);
-          System.out.println("***************");
-          System.out.println("Total Balance: "+totalBalance);
-          System.out.println("***************");
+          showBalance(totalBalance);
           break;
 
         case 3:
           totalBalance = withdraw(totalBalance);
-          System.out.println("***************");
-          System.out.println("Total Balance: "+totalBalance);
+          showBalance(totalBalance);
           
           break;
 
@@ -51,6 +46,12 @@ public class BankWithdraw{
     }while(choose !=4);
     input.close();
 
+  }
+
+  public static void showBalance(double balance){
+    System.out.println("***************");
+    System.out.println("Your balance: "+ balance);
+    System.out.println("***************");
   }
 
   public static double deposit(double balance){
