@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class StackUndo {
+  public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+    Stack<String> stack = new Stack<>();
+
+    while (true) {
+      System.out.println("**********");
+      System.out.println("Stack: " + stack);
+      System.out.println("1. Undo");
+      System.out.println("2. Add");
+      System.out.println("3. Exit");
+      System.out.print("Pick your choice: ");
+
+      int choice = input.nextInt();
+      input.nextLine(); // FIX: consume newline
+
+      System.out.println("**********");
+
+      if (choice == 1) {
+        if (!stack.isEmpty()) {
+          stack.pop();
+        }
+
+      } else if (choice == 2) {
+        System.out.print("Add a word: ");
+        String add = input.nextLine();
+        stack.push(add);
+
+      } else if (choice == 3) {
+        System.out.println("Exiting...");
+        break;
+
+      } else {
+        System.out.println("Invalid input. Try again.");
+      }
+    }
+
+    input.close();
+  }
+}
