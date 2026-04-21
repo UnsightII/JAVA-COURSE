@@ -1,4 +1,4 @@
- import java.util.Scanner;
+
  public class HelloWorld {
     public static void main(String[] args) {
       int[] array = {9,1,2,6,3,7,8,4,5};
