@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -6,6 +7,8 @@ public class StackUndo {
 
     Scanner input = new Scanner(System.in);
     Stack<String> stack = new Stack<>();
+    int choice;
+    String add;
 
     while (true) {
       System.out.println("**********");
@@ -15,19 +18,27 @@ public class StackUndo {
       System.out.println("3. Exit");
       System.out.print("Pick your choice: ");
 
-      int choice = input.nextInt();
-      input.nextLine(); // FIX: consume newline
+      try{
+          choice = input.nextInt();
+          input.nextLine();
+        }catch(InputMismatchException e){
+          System.out.println("Invalid input. Try again.");
+          input.nextLine();
+          continue;
+        }
 
       System.out.println("**********");
 
       if (choice == 1) {
         if (!stack.isEmpty()) {
           stack.pop();
+        }else{
+          System.out.println("Stack is Empty!");
         }
 
       } else if (choice == 2) {
         System.out.print("Add a word: ");
-        String add = input.nextLine();
+        add = input.nextLine();
         stack.push(add);
 
       } else if (choice == 3) {
@@ -35,7 +46,7 @@ public class StackUndo {
         break;
 
       } else {
-        System.out.println("Invalid input. Try again.");
+        System.out.println("Invalid input.Try Again!");
       }
     }
 
