@@ -7,8 +7,52 @@ public class StackBracket {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
+        Stack<Character> stack = new Stack<>();
 
-        System.out.print("Enter a Balance Bracket: ");
+        String postfix = "";
+        System.out.print("Enter an infix: ");
+        String infix = input.nextLine().toUpperCase();
+
+        for (char c : infix.toCharArray()) {
+
+            if (Character.isLetterOrDigit(c)) {
+                postfix += c;
+            }
+
+            else if (c == '(') {
+                stack.push(c);
+            }
+
+            else if (c == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix += stack.pop();
+                }
+                stack.pop(); // remove '('
+            }
+
+            else { // operator
+                while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(c)) {
+                    postfix += stack.pop();
+                }
+                stack.push(c);
+            }
+        }
+
+        // pop remaining operators
+        while (!stack.isEmpty()) {
+            postfix += stack.pop();
+        }
+
+        System.out.println("Postfix: " + postfix);
+    }
+
+    public static int precedence(char c) {
+        if (c == '+' || c == '-') return 1;
+        if (c == '*' || c == '/') return 2;
+        return -1;
+    }
+}
+        /*System.out.print("Enter a Balance Bracket: ");
         String bracket = input.nextLine();
 
         if (isBalance(bracket)) {
